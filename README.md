@@ -35,7 +35,7 @@ Usage:
 `patchps3iso <ISO file>`            | default version (4.21)
 `patchps3iso <ISO file> <version>`  | with version (4.21 to 4.60)
 
-NOTE 1: patchps3iso can patch ISO split files (.iso.x or .ISO.x)
+**Note 1:** patchps3iso can patch ISO split files (.iso.x or .ISO.x)
 
-NOTE 2: Use --help or /? as parameter to see the usage
+**Note 2:** Use `--help` or `/?` as parameter to see the usage information
 
