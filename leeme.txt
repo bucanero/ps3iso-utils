@@ -1,0 +1,24 @@
+
+Uso:
+
+extractps3iso                           -> entrar datos desde el programa
+extractps3iso <ISO file>                -> carpeta de destino por defecto
+extractps3iso <ISO file> <pathfiles>    -> pathfiles es la carpeta de destino
+extractps3iso -s <ISO file>             -> partir ficheros grandes (FAT32)
+extractps3iso -s <ISO file> <pathfiles> -> partir ficheros grandes (FAT32)
+
+ 
+makeps3iso                                     -> entrar datos desde el programa
+makeps3iso <pathfiles>                         -> nombre ISO por defecto
+makeps3iso <pathfiles> <ISO file or folder>    -> fichero o carpeta de destino
+makeps3iso -s <pathfiles>                      -> partir ficheros grandes a 4GB
+makeps3iso -s <pathfiles> <ISO file or folder> -> partir ficheros grandes a 4GB
+
+patchps3iso                       -> entrar datos desde el programa
+patchps3iso <ISO file>            -> version por defecto (4.21)
+patchps3iso <ISO file> <version>  -> con version (4.21 to 4.60)
+
+NOTES: patchps3iso puede parchear ficheros ISO partidos (.iso.x or .ISO.x)
+
+NOTE2: Usa --help or /? como parametro para ver el uso
+
