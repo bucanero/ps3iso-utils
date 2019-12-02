@@ -17,7 +17,7 @@
 */
 
 #include <stdio.h>
-#include <malloc.h>
+#include <malloc/malloc.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <dirent.h>
@@ -27,6 +27,10 @@ int verbose = 1;
 
 #if defined (__MSVCRT__)
 #define stat _stati64
+#endif
+
+#if defined __APPLE__
+#define fseeko64 fseek
 #endif
 
 #define u8 unsigned char

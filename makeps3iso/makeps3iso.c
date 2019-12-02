@@ -17,7 +17,7 @@
 */
 
 #include <stdio.h>
-#include <malloc.h>
+#include <malloc/malloc.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <dirent.h>
@@ -82,6 +82,43 @@ static u64 get_disk_free_space(char *path)
 
 }
 #elif __unix__ 
+#include <sys/statvfs.h>
+
+// get_rand() method from ps3netsrv Cobra Sources...
+
+static void get_rand(void *bfr, u32 size)
+{
+	FILE *fp;
+	
+	if (size == 0)
+		return;
+
+	fp = fopen("/dev/urandom", "r");
+	if (fp == NULL) {
+		fprintf(stderr, "Error aquiring crypt context.\n");
+        return;
+    }
+
+	if (fread(bfr, size, 1, fp) != 1)
+		fprintf(stderr, "Error getting random numbers.\n");
+
+	fclose(fp);
+}
+
+static u64 get_disk_free_space(char *path)
+{
+    
+    struct statvfs svfs;
+    
+    if(statvfs((const char *) path, &svfs)!=0)
+        return (u64) (-1LL);
+
+    return ( ((u64)svfs.f_bsize * svfs.f_bfree));
+
+
+}
+
+#elif __APPLE__
 #include <sys/statvfs.h>
 
 // get_rand() method from ps3netsrv Cobra Sources...

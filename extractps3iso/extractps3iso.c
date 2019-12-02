@@ -17,7 +17,7 @@
 */
 
 #include <stdio.h>
-#include <malloc.h>
+#include <malloc/malloc.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <dirent.h>
@@ -41,11 +41,11 @@ static int get_input_char()
     return c2;
 }
 
+int verbose = 1;
+
 #ifdef __MSVCRT__
 #include <windows.h>
 #include <winbase.h>
-
-int verbose = 1;
 
 static u64 get_disk_free_space(char *path)
 {
@@ -72,6 +72,20 @@ static u64 get_disk_free_space(char *path)
     return ( ((u64)svfs.f_bsize * svfs.f_bfree));
 
 
+}
+
+#elif __APPLE__
+#include <sys/statvfs.h>
+#  define fseeko64 fseek
+
+static u64 get_disk_free_space(char *path)
+{    
+    struct statvfs svfs;
+    
+    if(statvfs((const char *) path, &svfs)!=0)
+        return (u64) (-1LL);
+
+    return ( ((u64)svfs.f_bsize * svfs.f_bfree));
 }
 
 #else
