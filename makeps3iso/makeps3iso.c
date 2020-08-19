@@ -1855,7 +1855,7 @@ int main(int argc, const char* argv[])
     // libc test
     if(sizeof(s.st_size) != 8) {
 
-        printf("Error!: stat st_size must be a 64 bit number!  (size %i)\n\nPress ENTER key to exit\n\n", sizeof(s.st_size));
+        printf("Error!: stat st_size must be a 64 bit number!  (size %lu)\n\nPress ENTER key to exit\n\n", sizeof(s.st_size));
         get_input_char();
         return -1;
     }
