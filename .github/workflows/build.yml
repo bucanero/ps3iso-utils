@@ -1,0 +1,54 @@
+name: Build binaries
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [run_build]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install Ubuntu requirements
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        echo "No requirements"
+        #sudo apt-get update
+        #sudo apt-get -y install autoconf automake bison flex gcc libelf-dev make texinfo libncurses5-dev patch python subversion wget zlib1g-dev libtool-bin python-dev bzip2 libgmp3-dev pkg-config
+    
+    - name: Install macOS requirements
+      if: matrix.os == 'macos-latest'
+      run: |
+        echo "No requirements"
+        #brew update
+        #brew install autoconf automake openssl libelf ncurses zlib gmp wget pkg-config
+
+    - name: Runs all the stages in the shell
+      run: |
+        cd extractps3iso
+        make
+        cd ../makeps3iso
+        make
+        cd ../patchps3iso
+        make
+        cd ..
+
+    - name: Get short SHA
+      id: slug
+      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+    
+    - name: Compress output
+      run: |
+        tar -zcvf build.tar.gz extractps3iso/extractps3iso makeps3iso/makeps3iso patchps3iso/patchps3iso
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build-${{ steps.slug.outputs.sha8 }}-${{matrix.os}}
+        path: build.tar.gz
