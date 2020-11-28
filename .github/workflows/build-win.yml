@@ -1,0 +1,62 @@
+name: Build Windows binaries
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [run_build]
+
+jobs:
+  msys:
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        mingw: ["MINGW32", "MINGW64"]
+        include:
+          - mingw: "MINGW32"
+            package: "mingw-w64-i686"
+          - mingw: "MINGW64"
+            package: "mingw-w64-x86_64"
+    defaults:
+      run:
+        shell: bash.exe --login -eo pipefail "{0}"
+    env:
+      MSYSTEM: ${{ matrix.mingw }}
+      CHERE_INVOKING: 1
+    name: MSYS2 ${{ matrix.mingw }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up shell
+        run: echo ::add-path::C:\msys64\usr\bin\
+        shell: pwsh
+      - name: Print system version
+        run: |
+          uname
+      - name: Install MinGW requirements
+        run: |
+          echo "$GITHUB_WORKSPACE"
+          #pacman -S --noconfirm ${{ matrix.package }}-python3-setuptools
+          # build the project
+          #python3 setup.py install
+      - name: Build binaries
+        run: |
+          cd extractps3iso
+          make
+          cd ../makeps3iso
+          make
+          cd ../patchps3iso
+          make
+          cd ..
+
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+    
+      - name: Compress output
+        run: |
+          tar -zcvf build.tar.gz extractps3iso/extractps3iso.exe makeps3iso/makeps3iso.exe patchps3iso/patchps3iso.exe
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-${{ steps.slug.outputs.sha8 }}-${{matrix.mingw}}
+          path: build.tar.gz
