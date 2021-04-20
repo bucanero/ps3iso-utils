@@ -1,7 +1,7 @@
 # PS3 ISO Utilities
 [![License](https://img.shields.io/github/license/bucanero/ps3iso-utils.svg)](./LICENSE)
 
-Windows/Linux/macOS builds of [Estwald's](https://github.com/Estwald) ps3iso utilities v1.9
+Windows, Linux, and macOS builds of [Estwald's](https://github.com/Estwald) ps3iso utilities v1.9
 
 **Note:** Use `--help` or `/?` as parameter to see the usage information
 
@@ -39,7 +39,7 @@ Usage:
 `patchps3iso <ISO file>`            | default version (4.21)
 `patchps3iso <ISO file> <version>`  | with version (4.21 to 4.60)
 
-**Note:** patchps3iso can patch ISO split files (.iso.x or .ISO.x)
+**Note:** `patchps3iso` can patch ISO split files (.iso.x or .ISO.x)
 
 ## splitps3iso
 
