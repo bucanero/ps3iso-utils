@@ -38,6 +38,8 @@ jobs:
         make
         cd ../patchps3iso
         make
+        cd ../splitps3iso
+        make
         cd ..
 
     - name: Get short SHA
@@ -46,7 +48,7 @@ jobs:
     
     - name: Compress output
       run: |
-        tar -zcvf build.tar.gz extractps3iso/extractps3iso makeps3iso/makeps3iso patchps3iso/patchps3iso
+        tar -zcvf build.tar.gz extractps3iso/extractps3iso makeps3iso/makeps3iso patchps3iso/patchps3iso splitps3iso/splitps3iso
 
     - uses: actions/upload-artifact@v2
       with:
