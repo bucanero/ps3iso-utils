@@ -1,7 +1,9 @@
-# ps3iso utilities v1.9 (macOS)
+# PS3 ISO Utilities
 [![License](https://img.shields.io/github/license/bucanero/ps3iso-utils.svg)](./LICENSE)
 
-macOS Mojave build of [Estwald's](https://github.com/Estwald) ps3iso utilities v1.9
+Windows/Linux/macOS builds of [Estwald's](https://github.com/Estwald) ps3iso utilities v1.9
+
+**Note:** Use `--help` or `/?` as parameter to see the usage information
 
 ## extractps3iso
 
@@ -37,6 +39,13 @@ Usage:
 `patchps3iso <ISO file>`            | default version (4.21)
 `patchps3iso <ISO file> <version>`  | with version (4.21 to 4.60)
 
-**Note 1:** patchps3iso can patch ISO split files (.iso.x or .ISO.x)
+**Note:** patchps3iso can patch ISO split files (.iso.x or .ISO.x)
 
-**Note 2:** Use `--help` or `/?` as parameter to see the usage information
+## splitps3iso
+
+Usage:
+
+| Command | Description |
+| :----- | :------ |
+`splitps3iso`                       | interactive console input
+`splitps3iso <ISO file>`            | split ISO image (4Gb)
