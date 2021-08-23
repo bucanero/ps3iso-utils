@@ -2,7 +2,12 @@
 [![Downloads](https://img.shields.io/github/downloads/bucanero/ps3iso-utils/total.svg?maxAge=3600)](https://github.com/bucanero/ps3iso-utils/releases)
 [![License](https://img.shields.io/github/license/bucanero/ps3iso-utils.svg)](./LICENSE)
 
-Windows, Linux, and macOS builds of [Estwald's](https://github.com/Estwald) ps3iso utilities v1.9
+Windows, Linux, and macOS builds of [Estwald's](https://github.com/Estwald) PS3 ISO utilities:
+
+- [extractps3iso](#extractps3iso)
+- [makeps3iso](#makeps3iso)
+- [patchps3iso](#patchps3iso)
+- [splitps3iso](#splitps3iso)
 
 **Note:** Use `--help` or `/?` as parameter to see the usage information
 
