@@ -1,5 +1,7 @@
 # PS3 ISO Utilities
 [![Downloads](https://img.shields.io/github/downloads/bucanero/ps3iso-utils/total.svg?maxAge=3600)](https://github.com/bucanero/ps3iso-utils/releases)
+[![Build binaries](https://github.com/bucanero/ps3iso-utils/actions/workflows/build.yml/badge.svg)](https://github.com/bucanero/ps3iso-utils/actions/workflows/build.yml)
+[![Build Windows binaries](https://github.com/bucanero/ps3iso-utils/actions/workflows/build-win.yml/badge.svg)](https://github.com/bucanero/ps3iso-utils/actions/workflows/build-win.yml)
 [![License](https://img.shields.io/github/license/bucanero/ps3iso-utils.svg)](./LICENSE)
 
 Windows, Linux, and macOS builds of [Estwald's](https://github.com/Estwald) PS3 ISO utilities:
